@@ -28,7 +28,7 @@
 
 
     function deleteTodo(id) {
-        var todo = queryTodo(id);
+        let todo = queryTodo(id);
         todos.splice(todo,1);
         localStorage.setItem("todos",JSON.stringify(todos));
     }
@@ -36,8 +36,8 @@
 
     function todoTpl(id,title,complete) {
 
-        var checked = "";
-        var strike="";
+        let checked = "";
+        let strike="";
 
         if(complete == 1) {
             strike  = "complete";
@@ -58,7 +58,7 @@
 
         if(e.keyCode == 13) {
 
-            var data = {
+            let data = {
                 "title": this.value,
                 "key": Math.floor(Math.random() * 1000000000),
                 "complete": 0
@@ -80,12 +80,12 @@
 
     function addToList(todo) {
 
-        var todoList = document.querySelector('.todo-list');
-        var todoItem = document.createElement('li');
+        let todoList = document.querySelector('.todo-list');
+        let todoItem = document.createElement('li');
 
-        var id = todo["key"];
-        var title = todo["title"];
-        var complete = todo["complete"];
+        let id = todo["key"];
+        let title = todo["title"];
+        let complete = todo["complete"];
 
         todoItem.innerHTML = todoTpl(id,title,complete);
         todoList.appendChild(todoItem);
@@ -96,7 +96,7 @@
 
     (function() {
 
-        for(var todo in todos) {
+        for(let todo in todos) {
             addToList(todos[todo]);
         }
 
@@ -107,15 +107,15 @@
 
     function deleteTodoItem() {
 
-        var deleteItem = document.querySelectorAll('li .item button');
-        var list = document.querySelector(".todo-list");
+        let deleteItem = document.querySelectorAll('li .item button');
+        let list = document.querySelector(".todo-list");
         
-        for(var i=0;i<deleteItem.length;i++) {
+        for(let i=0;i<deleteItem.length;i++) {
 
             deleteItem[i].addEventListener("click", function() {
 
-                var id = this.parentNode.dataset.id;
-                var todo = this.parentNode.parentNode;
+                let id = this.parentNode.dataset.id;
+                let todo = this.parentNode.parentNode;
 
                 list.removeChild(todo);
                 deleteTodo(id);
@@ -131,12 +131,12 @@
 
     function complete() {
 
-        var c = document.querySelectorAll('li input');
-        for(var i=0;i<c.length;i++) {
+        let c = document.querySelectorAll('li input');
+        for(let i=0;i<c.length;i++) {
 
             c[i].addEventListener("input", function() {
 
-                var id = this.parentNode.dataset.id;
+                let id = this.parentNode.dataset.id;
 
                 if(this.checked) {
                     this.nextElementSibling.classList.add("complete");
@@ -157,13 +157,13 @@
 
    function editTodo() {
 
-        var todos = document.querySelectorAll(".todo-list li .item span");
+        let todos = document.querySelectorAll(".todo-list li .item span");
         
-        for(var i=0;i<todos.length;i++) {
+        for(let i=0;i<todos.length;i++) {
 
             todos[i].addEventListener("blur", function(e) {
-                var id = this.parentNode.dataset.id;
-                var title = e.target.textContent;
+                let id = this.parentNode.dataset.id;
+                let title = e.target.textContent;
                 updateTodo(id,"title",title)
             });
 
